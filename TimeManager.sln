@@ -17,6 +17,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "Testing\DAL\DAL.csproj", "{C85BACF4-0F74-4EC2-9B4C-606025767675}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Database", "Database", "{F10BE278-699A-4EBC-A221-1A7B44AF1CDE}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\..\Users\Josue\Desktop\TimeManager.sql = ..\..\..\Users\Josue\Desktop\TimeManager.sql
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

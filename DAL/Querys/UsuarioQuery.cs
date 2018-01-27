@@ -4,13 +4,25 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TimeManager.Common.Transaction;
 using TimeManager.Entities;
+using TimeManager.Common.Query;
 
 namespace TimeManager.DAL.Querys
 {
     public class UsuarioQuery
     {
+        public static Query GetList()
+        {
+            Query QueryGetById = new Query()
+            {
+                RawQuery = "SELECT Id, Nombre, Apellido, Correo, Contrasenia, FechaRegistro, EsActivo FROM seg.Usuario;",
+                //Parameters = new List<SqlParameter>() { new SqlParameter("id", id) },
+                Type = TypeCrud.Query
+            };
+
+            return QueryGetById;
+        }
+
         public static Query GetById(int id)
         {
             Query QueryGetById = new Query()
@@ -61,7 +73,7 @@ namespace TimeManager.DAL.Querys
             return QueryUpdate;
         }
 
-        public static Query Delete(long id)
+        public static Query Delete(int id)
         {
             Query QueryDelete = new Query()
             {

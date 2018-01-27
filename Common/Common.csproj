@@ -44,9 +44,9 @@
     <Compile Include="Exceptions\ExceptionBase.cs" />
     <Compile Include="Exceptions\ExceptionUtility.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Transaction\Query.cs" />
-    <Compile Include="Transaction\QueryResult.cs" />
-    <Compile Include="Transaction\TypeCrud.cs" />
+    <Compile Include="Query\Query.cs" />
+    <Compile Include="Query\QueryResult.cs" />
+    <Compile Include="Query\TypeCrud.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

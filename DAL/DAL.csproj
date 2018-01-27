@@ -45,7 +45,6 @@
     <Compile Include="Connectivity\Connection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Querys\UsuarioQuery.cs" />
-    <Compile Include="Connectivity\Transaction.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common\Common.csproj">

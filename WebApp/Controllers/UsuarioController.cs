@@ -4,27 +4,56 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using TimeManager.BL;
-using TimeManager.Common.Transaction;
 using TimeManager.Entities;
 
-namespace TimesManager.WebApp.Controllers
+namespace TimeManager.WebApp.Controllers
 {
     public class UsuarioController : Controller
     {        
         public ActionResult Index()
         {
+            List<Usuario> ListUsuario = UsuarioBL.GetList();
+            return View(ListUsuario);
+        }
+
+        public ActionResult Details(int id)
+        {
+            Usuario Usuario = UsuarioBL.GetById(id);
+            return View(Usuario);
+        }
+
+        public ActionResult Create()
+        {
             return View();
         }
 
-        public ActionResult Register(Usuario usuario)
+        [HttpPost]
+        public ActionResult Create(Usuario usuario)
         {
-            using (Transaction Tran = new Transaction())
+            usuario.FechaRegistro = DateTime.Now;
+            usuario.EsActivo = true;
+            Usuario Usuario = UsuarioBL.Create(usuario);
+            return RedirectToAction("Details", new { id = usuario.Id });
+        }
+
+        public ActionResult Edit(int id)
+        {
+            Usuario Usuario = UsuarioBL.GetById(id);
+            return View(Usuario);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(Usuario usuario)
+        {
+            if (UsuarioBL.Update(usuario))
             {
-                usuario.Id = Tran.Execute<int>(UsuarioBL.Create(usuario));
-                
-                Tran.Commit();
+                return RedirectToAction("Details", new { id = usuario.Id });
             }
-            return View(usuario);
+            else
+            {
+                ModelState.AddModelError(string.Empty, "Error al guardar el registro");
+                return View(usuario);
+            }
         }
     }
 }
