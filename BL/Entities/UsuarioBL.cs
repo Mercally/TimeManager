@@ -4,12 +4,12 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TimeManager.Common.Entities;
 using TimeManager.Common.Exceptions;
 using TimeManager.DAL.Connectivity;
 using TimeManager.DAL.Querys;
-using TimeManager.Entities;
 
-namespace TimeManager.BL
+namespace TimeManager.BL.Entities
 {
     public class UsuarioBL
     {

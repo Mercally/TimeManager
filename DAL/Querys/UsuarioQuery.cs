@@ -4,7 +4,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TimeManager.Entities;
+using TimeManager.Common.Entities;
 using TimeManager.Common.Query;
 
 namespace TimeManager.DAL.Querys

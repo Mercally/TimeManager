@@ -43,7 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UsuarioBL.cs" />
+    <Compile Include="Entities\UsuarioBL.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common\Common.csproj">
@@ -53,10 +53,6 @@
     <ProjectReference Include="..\DAL\DAL.csproj">
       <Project>{d4e21262-3af4-4a06-8fff-e2360f6d935b}</Project>
       <Name>DAL</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Entities\Entities.csproj">
-      <Project>{1866eaba-2a89-4c86-aab9-190e3728fc5f}</Project>
-      <Name>Entities</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

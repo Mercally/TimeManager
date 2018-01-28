@@ -8,7 +8,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
 using TimeManager.Entities.Extensions;
 
-namespace TimeManager.Entities
+namespace TimeManager.Common.Entities
 {
     public class Usuario
     {

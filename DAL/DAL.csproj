@@ -44,16 +44,13 @@
     <Compile Include="Connectivity\Commands.cs" />
     <Compile Include="Connectivity\Connection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Querys\BoletaQuery.cs" />
     <Compile Include="Querys\UsuarioQuery.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common\Common.csproj">
       <Project>{91666e2c-96ce-4340-891b-78c11c09d80d}</Project>
       <Name>Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Entities\Entities.csproj">
-      <Project>{1866eaba-2a89-4c86-aab9-190e3728fc5f}</Project>
-      <Name>Entities</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

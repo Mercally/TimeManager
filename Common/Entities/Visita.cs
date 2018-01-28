@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TimeManager.Entities
+namespace TimeManager.Common.Entities
 {
     public class Visita
     {
