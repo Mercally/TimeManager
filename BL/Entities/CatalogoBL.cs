@@ -8,25 +8,23 @@ using TimeManager.Common.Entities;
 using TimeManager.Common.Exceptions;
 using TimeManager.DAL.Connectivity;
 using TimeManager.DAL.Querys;
+using TimeManager.Common.Enums;
 
 namespace TimeManager.BL.Entities
 {
-    public class UsuarioBL
+    public class CatalogoBL
     {
-        private static List<Usuario> GetData(DataTable QueryResult)
+        private static List<Catalogo> GetData(DataTable QueryResult)
         {
-            List<Usuario> ListUsuario = new List<Usuario>();
+            List<Catalogo> ListCatalogo = new List<Catalogo>();
             try
             {
                 foreach (DataRow Row in QueryResult.Rows)
                 {
-                    ListUsuario.Add(new Usuario()
+                    ListCatalogo.Add(new Catalogo()
                     {
                         Id = Row.IsNull("Id") ? 0 : Convert.ToInt32(Row["Id"]),
                         Nombre = Row.IsNull("Nombre") ? "" : Convert.ToString(Row["Nombre"]),
-                        Apellido = Row.IsNull("Apellido") ? "" : Convert.ToString(Row["Apellido"]),
-                        Correo = Row.IsNull("Correo") ? "" : Convert.ToString(Row["Correo"]),
-                        Contrasenia = Row.IsNull("Contrasenia") ? "" : Convert.ToString(Row["Contrasenia"]),
                         EsActivo = Row.IsNull("EsActivo") ? false : Convert.ToBoolean(Row["EsActivo"]),
                         FechaRegistro = Row.IsNull("FechaRegistro") ? DateTime.Now : Convert.ToDateTime(Row["FechaRegistro"])
                     });
@@ -36,65 +34,65 @@ namespace TimeManager.BL.Entities
             {
                 // Exceptios
             }
-            return ListUsuario;
+            return ListCatalogo;
         }
 
-        public static List<Usuario> GetList(bool onlyActives = true)
+        public static List<Catalogo> GetList(CatalogoEnum tableName, bool onlyActives = true)
         {
-            List<Usuario> ListUsuario = new List<Usuario>();
+            List<Catalogo> ListCatalogo = new List<Catalogo>();
             try
             {
-                var Query = UsuarioQuerys.GetList(onlyActives);
+                var Query = CatalogoQuerys.GetList(tableName.ToString(), onlyActives);
                 var Result = Commands.ExecuteQuery(Query);
 
-                ListUsuario = GetData(Result);
+                ListCatalogo = GetData(Result);
             }
             catch (Exception ex)
             {
                 ExceptionUtility.LogError(ex);
             }
-            return ListUsuario;
+            return ListCatalogo;
         }
 
-        public static Usuario GetById(int id, bool onlyActives = true)
+        public static Catalogo GetById(int id, CatalogoEnum tableName, bool onlyActives = true)
         {
-            Usuario Usuario = null;
+            Catalogo Catalogo = null;
             try
             {
-                var Query = UsuarioQuerys.GetById(id, onlyActives);
+                var Query = CatalogoQuerys.GetById(id, tableName.ToString(), onlyActives);
                 var Result = Commands.ExecuteQuery(Query);
 
-                Usuario = GetData(Result).First();
+                Catalogo = GetData(Result).First();
             }
             catch (Exception ex)
             {
                 ExceptionUtility.LogError(ex);
             }
-            return Usuario;
+            return Catalogo;
         }
 
-        public static Usuario Create(Usuario usuario)
+        public static Catalogo Create(Catalogo catalogo, CatalogoEnum tableName)
         {
             try
             {
-                var Query = UsuarioQuerys.Create(usuario);
+                var Query = CatalogoQuerys.Create(catalogo, tableName.ToString());
                 var Result = Convert.ToInt32(Commands.ExecuteScalar(Query));
 
-                usuario.Id = Result;
+                catalogo.Id = Result;
             }
             catch (Exception ex)
             {
                 ExceptionUtility.LogError(ex);
             }
-            return usuario;
+            return catalogo;
         }
 
-        public static bool Update(Usuario usuario)
+        public static bool Update(Catalogo catalogo, CatalogoEnum tableName)
         {
             bool Result = false;
             try
             {
-                var Query = UsuarioQuerys.Update(usuario);
+                var Query = CatalogoQuerys.Update(catalogo, tableName.ToString());
                 Result = Commands.ExecuteNonQuery(Query);
             }
             catch (Exception ex)
@@ -104,12 +102,12 @@ namespace TimeManager.BL.Entities
             return Result;
         }
 
-        public static bool Delete(int id, bool removePhysical = false)
+        public static bool Delete(int id, CatalogoEnum tableName, bool removePhysical = false)
         {
             bool Result = false;
             try
             {
-                var Query = UsuarioQuerys.Delete(id, removePhysical);
+                var Query = CatalogoQuerys.Delete(id, tableName.ToString(), removePhysical);
                 Result = Commands.ExecuteNonQuery(Query);
             }
             catch (Exception ex)

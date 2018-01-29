@@ -44,8 +44,12 @@
     <Compile Include="Connectivity\Commands.cs" />
     <Compile Include="Connectivity\Connection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Querys\BoletaQuery.cs" />
-    <Compile Include="Querys\UsuarioQuery.cs" />
+    <Compile Include="Querys\BoletaQuerys.cs" />
+    <Compile Include="Querys\CatalogoQuery.cs" />
+    <Compile Include="Querys\ProyectoQuerys.cs" />
+    <Compile Include="Querys\ClienteQuerys.cs" />
+    <Compile Include="Querys\ActividadQuerys.cs" />
+    <Compile Include="Querys\UsuarioQuerys.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common\Common.csproj">

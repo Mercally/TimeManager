@@ -9,28 +9,37 @@ using TimeManager.Common.Query;
 
 namespace TimeManager.DAL.Querys
 {
-    public class UsuarioQuery
+    public class UsuarioQuerys
     {
-        public static Query GetList()
+        public static Query GetList(bool onlyActives)
         {
             Query QueryGetById = new Query()
             {
-                RawQuery = "SELECT Id, Nombre, Apellido, Correo, Contrasenia, FechaRegistro, EsActivo FROM seg.Usuario;",
-                //Parameters = new List<SqlParameter>() { new SqlParameter("id", id) },
+                RawQuery = "SELECT Id, Nombre, Apellido, Correo, Contrasenia, FechaRegistro, EsActivo FROM seg.Usuario ",
                 Type = TypeCrud.Query
             };
+
+            if (onlyActives)
+            {
+                QueryGetById.RawQuery += "WHERE EsActivo=1;";
+            }
 
             return QueryGetById;
         }
 
-        public static Query GetById(int id)
+        public static Query GetById(int id, bool onlyActives)
         {
             Query QueryGetById = new Query()
             {
-                RawQuery = "SELECT Id, Nombre, Apellido, Correo, Contrasenia, FechaRegistro, EsActivo FROM seg.Usuario WHERE Id = @id;",
+                RawQuery = "SELECT Id, Nombre, Apellido, Correo, Contrasenia, FechaRegistro, EsActivo FROM seg.Usuario WHERE Id=@id ",
                 Parameters = new List<SqlParameter>() { new SqlParameter("id", id) },
                 Type = TypeCrud.Query
             };
+
+            if (onlyActives)
+            {
+                QueryGetById.RawQuery += "AND EsActivo=1;";
+            }
 
             return QueryGetById;
         }
@@ -73,11 +82,18 @@ namespace TimeManager.DAL.Querys
             return QueryUpdate;
         }
 
-        public static Query Delete(int id)
+        public static Query Delete(int id, bool removePhysical)
         {
+            string RawQuery = "UPDATE seg.Usuario SET EsActivo = 0 WHERE Id = @id";
+
+            if (removePhysical)
+            {
+                RawQuery = "DELETE seg.Usuario WHERE Id = @id;";
+            }
+
             Query QueryDelete = new Query()
             {
-                RawQuery = "DELETE seg.Usuario WHERE Id = @id;",
+                RawQuery = RawQuery,
                 Parameters = new List<SqlParameter>() {
                                 new SqlParameter("id", id)
                                 },

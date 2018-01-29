@@ -6,11 +6,13 @@ using System.Threading.Tasks;
 
 namespace TimeManager.Common.Entities
 {
-    public class Visita
+    public class Actividad
     {
         public int Id { get; set; }
+        public string Descripcion { get; set; }
         public int EstadoId { get; set; }
         public bool EsActivo { get; set; }
+        public DateTime FechaRegistro { get; set; }
 
         public Catalogo Estado { get; set; }
         public Boleta Boleta { get; set; }

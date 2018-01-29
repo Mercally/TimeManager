@@ -1,0 +1,8 @@
+<Playlist Version="1.0">
+  <!--ClienteBL_Test-->
+  <Add Test="TimeManager.Testing.BL.Entities.BoletaBL_Test.ClienteBL_Create" />
+  <Add Test="TimeManager.Testing.BL.Entities.BoletaBL_Test.ClienteBL_GetList" />
+  <Add Test="TimeManager.Testing.BL.Entities.BoletaBL_Test.ClienteBL_GetById" />
+  <Add Test="TimeManager.Testing.BL.Entities.BoletaBL_Test.ClienteBL_Update" />
+  <Add Test="TimeManager.Testing.BL.Entities.BoletaBL_Test.ClienteBL_Delete" />
+</Playlist>

@@ -10,6 +10,7 @@ namespace TimeManager.Common.Entities
     {
         public int Id { get; set; }
         public string Nombre { get; set; }
+        public DateTime FechaRegistro { get; set; }
         public bool EsActivo { get; set; }
     }
 }

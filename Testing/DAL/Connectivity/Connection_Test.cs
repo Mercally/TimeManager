@@ -10,7 +10,7 @@ namespace TimeManager.Testing.DAL.Connectivity
         Connection con = new Connection();
 
         [TestMethod]
-        public void Connect()
+        public void Connection_Connect()
         {
             var Connection = con.Connect();
 

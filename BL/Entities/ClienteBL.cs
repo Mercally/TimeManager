@@ -11,24 +11,21 @@ using TimeManager.DAL.Querys;
 
 namespace TimeManager.BL.Entities
 {
-    public class UsuarioBL
+    public class ClienteBL
     {
-        private static List<Usuario> GetData(DataTable QueryResult)
+        private static List<Cliente> GetData(DataTable QueryResult)
         {
-            List<Usuario> ListUsuario = new List<Usuario>();
+            List<Cliente> ListCliente = new List<Cliente>();
             try
             {
                 foreach (DataRow Row in QueryResult.Rows)
                 {
-                    ListUsuario.Add(new Usuario()
+                    ListCliente.Add(new Cliente()
                     {
                         Id = Row.IsNull("Id") ? 0 : Convert.ToInt32(Row["Id"]),
                         Nombre = Row.IsNull("Nombre") ? "" : Convert.ToString(Row["Nombre"]),
-                        Apellido = Row.IsNull("Apellido") ? "" : Convert.ToString(Row["Apellido"]),
-                        Correo = Row.IsNull("Correo") ? "" : Convert.ToString(Row["Correo"]),
-                        Contrasenia = Row.IsNull("Contrasenia") ? "" : Convert.ToString(Row["Contrasenia"]),
-                        EsActivo = Row.IsNull("EsActivo") ? false : Convert.ToBoolean(Row["EsActivo"]),
-                        FechaRegistro = Row.IsNull("FechaRegistro") ? DateTime.Now : Convert.ToDateTime(Row["FechaRegistro"])
+                        FechaRegistro = Row.IsNull("FechaRegistro") ? DateTime.Now : Convert.ToDateTime(Row["FechaRegistro"]),
+                        EsActivo = Row.IsNull("EsActivo") ? false : Convert.ToBoolean(Row["EsActivo"])
                     });
                 }
             }
@@ -36,65 +33,65 @@ namespace TimeManager.BL.Entities
             {
                 // Exceptios
             }
-            return ListUsuario;
+            return ListCliente;
         }
 
-        public static List<Usuario> GetList(bool onlyActives = true)
+        public static List<Cliente> GetList(bool onlyActives = true)
         {
-            List<Usuario> ListUsuario = new List<Usuario>();
+            List<Cliente> ListCliente = new List<Cliente>();
             try
             {
-                var Query = UsuarioQuerys.GetList(onlyActives);
+                var Query = ClienteQuerys.GetList(onlyActives);
                 var Result = Commands.ExecuteQuery(Query);
 
-                ListUsuario = GetData(Result);
+                ListCliente = GetData(Result);
             }
             catch (Exception ex)
             {
                 ExceptionUtility.LogError(ex);
             }
-            return ListUsuario;
+            return ListCliente;
         }
 
-        public static Usuario GetById(int id, bool onlyActives = true)
+        public static Cliente GetById(int id, bool onlyActives = true)
         {
-            Usuario Usuario = null;
+            Cliente Cliente = null;
             try
             {
-                var Query = UsuarioQuerys.GetById(id, onlyActives);
+                var Query = ClienteQuerys.GetById(id, onlyActives);
                 var Result = Commands.ExecuteQuery(Query);
 
-                Usuario = GetData(Result).First();
+                Cliente = GetData(Result).First();
             }
             catch (Exception ex)
             {
                 ExceptionUtility.LogError(ex);
             }
-            return Usuario;
+            return Cliente;
         }
 
-        public static Usuario Create(Usuario usuario)
+        public static Cliente Create(Cliente cliente)
         {
             try
             {
-                var Query = UsuarioQuerys.Create(usuario);
+                var Query = ClienteQuerys.Create(cliente);
                 var Result = Convert.ToInt32(Commands.ExecuteScalar(Query));
 
-                usuario.Id = Result;
+                cliente.Id = Result;
             }
             catch (Exception ex)
             {
                 ExceptionUtility.LogError(ex);
             }
-            return usuario;
+            return cliente;
         }
 
-        public static bool Update(Usuario usuario)
+        public static bool Update(Cliente cliente)
         {
             bool Result = false;
             try
             {
-                var Query = UsuarioQuerys.Update(usuario);
+                var Query = ClienteQuerys.Update(cliente);
                 Result = Commands.ExecuteNonQuery(Query);
             }
             catch (Exception ex)
@@ -109,7 +106,7 @@ namespace TimeManager.BL.Entities
             bool Result = false;
             try
             {
-                var Query = UsuarioQuerys.Delete(id, removePhysical);
+                var Query = ClienteQuerys.Delete(id, removePhysical);
                 Result = Commands.ExecuteNonQuery(Query);
             }
             catch (Exception ex)

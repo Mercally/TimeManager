@@ -42,6 +42,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\BoletaBL.cs" />
+    <Compile Include="Entities\ProyectoBL.cs" />
+    <Compile Include="Entities\ClienteBL.cs" />
+    <Compile Include="Entities\CatalogoBL.cs" />
+    <Compile Include="Entities\ActividadBL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Entities\UsuarioBL.cs" />
   </ItemGroup>
