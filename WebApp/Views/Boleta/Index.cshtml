@@ -1,27 +1,28 @@
-﻿@model IEnumerable<TimeManager.Common.Entities.Usuario>
+﻿@using TimeManager.Common.Entities;
+@model IEnumerable<Boleta>
 
 @{
-    ViewBag.Title = "Usuario";
+    ViewBag.Title = "Boleta";
 }
 @section Breadcrumb{
     <li class="breadcrumb-item">@Html.ActionLink("Dashboard", "Index", "Dashboard")</li>
-    <li class="breadcrumb-item active">Usuario</li>
+    <li class="breadcrumb-item active">Boleta</li>
 }
 
-<h2>Usuario</h2>
+<h2>Boleta</h2>
 <p>
-    @Html.ActionLink("Crear", "Create", null, new { @class = "btn btn-success btn-sm", @data_toggle = "tooltip", @data_placement = "bottom", @data_original_title = "Crear un nuevo usuario" })
+    @Html.ActionLink("Crear", "Create", null, new { @class = "btn btn-success btn-sm", @data_toggle = "tooltip", @data_placement = "bottom", @data_original_title = "Crear una nueva boleta" })
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Nombre)
+            @Html.DisplayNameFor(model => model.NumeroBoleta)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Apellido)
+            @Html.DisplayNameFor(model => model.TiempoEfectivo)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Correo)
+            @Html.DisplayNameFor(model => model.TiempoInvertidoEn)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.FechaRegistro)
@@ -33,13 +34,13 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Nombre)
+                @Html.DisplayFor(modelItem => item.NumeroBoleta)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Apellido)
+                @Html.DisplayFor(modelItem => item.TiempoEfectivo)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Correo, new { @class = "btn btn-link" })
+                @Html.DisplayFor(modelItem => item.TiempoInvertidoEn)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.FechaRegistro)

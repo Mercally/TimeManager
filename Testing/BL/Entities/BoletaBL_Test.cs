@@ -30,7 +30,7 @@ namespace TimeManager.Testing.BL.Entities
                 HoraSalida = DateTime.Now.TimeOfDay,
                 NumeroBoleta = "PRUEBA",
                 ProyectoId = ListProyecto.First().Id,
-                TiempoEfectivo = DateTime.Now.TimeOfDay,
+                TiempoEfectivo = 0,
                 TiempoInvertidoEn = ListTiempoInvertido.First().Id,
                 UsuarioId = ListUsuario.First().Id,
                 EsActivo = false,

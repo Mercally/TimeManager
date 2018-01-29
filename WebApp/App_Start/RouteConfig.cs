@@ -18,6 +18,11 @@ namespace TimeManager.WebApp
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Dashboard", action = "Index", id = UrlParameter.Optional }
             );
+
+            routes.MapRoute(
+                name: "Default2",
+                url: "{controller}/{action}/{boletaId}/{id}"
+            );
         }
     }
 }

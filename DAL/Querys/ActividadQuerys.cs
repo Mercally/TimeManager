@@ -48,10 +48,11 @@ namespace TimeManager.DAL.Querys
         {
             Query QueryCreate = new Query()
             {
-                RawQuery = "INSERT INTO com.Actividad(Descripcion, EstadoId, FechaRegistro, EsActivo) " +
-                           "VALUES(@descripcion, @estadoId, @fechaRegistro, @esActivo); SELECT SCOPE_IDENTITY();",
+                RawQuery = "INSERT INTO com.Actividad(Descripcion, BoletaId, EstadoId, FechaRegistro, EsActivo) " +
+                           "VALUES(@descripcion, @boletId, @estadoId, @fechaRegistro, @esActivo); SELECT SCOPE_IDENTITY();",
                 Parameters = new List<SqlParameter>() {
                                 new SqlParameter("descripcion", actividad.Descripcion),
+                                new SqlParameter("boletId", actividad.BoletaId),
                                 new SqlParameter("estadoId", actividad.EstadoId),
                                 new SqlParameter("fechaRegistro", actividad.FechaRegistro),
                                 new SqlParameter("esActivo", actividad.EsActivo)

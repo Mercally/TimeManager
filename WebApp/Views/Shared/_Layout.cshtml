@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TimeManager | @ViewBag.Title</title>
+    <title>timeManager | @ViewBag.Title</title>
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/bootstrap-grid.min.css" rel="stylesheet" />
@@ -15,14 +15,23 @@
 <body>
     <div class="container-fluid">
         <nav class=" navbar navbar-expand-md navbar-fixed-top navbar-dark bg-primary">
-            <a class="navbar-brand" href="#">TimeManager</a>
+            <a class="navbar-brand" href="@Url.Action("Index", "Dashboard", null)">TimeManager</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarColor01">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item @Html.IsSelected("Usuario")">
-                        @Html.ActionLink("Usuario", "Index", "Usuario", new { @class = "nav-link" })
+                        @Html.ActionLink("Usuario", "Index", "Usuario", null, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item @Html.IsSelected("Boleta")">
+                        @Html.ActionLink("Boleta", "Index", "Boleta", null, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item @Html.IsSelected("Cliente")">
+                        @Html.ActionLink("Cliente", "Index", "Cliente", null, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item @Html.IsSelected("Proyecto")">
+                        @Html.ActionLink("Proyecto", "Index", "Proyecto", null, new { @class = "nav-link" })
                     </li>
                 </ul>
                 <form class="form-inline my-2 my-lg-0">
@@ -38,7 +47,7 @@
             @RenderBody()
             <hr />
             <footer>
-                <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+                <p>&copy; @DateTime.Now.Year - timeManager</p>
             </footer>
         </div>
     </div>
@@ -47,10 +56,10 @@
     <script src="~/Scripts/jquery.validate.min.js"></script>
     <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
-    <style type="text/css">
-        a:hover{
-            color:white!important;
-        }
-    </style>
+    <script type="text/javascript">
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        });
+    </script>
 </body>
 </html>

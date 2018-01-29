@@ -3,7 +3,7 @@
 @model Usuario
 
 @{
-    ViewBag.Title = "Modificar";
+    ViewBag.Title = "Modificar usuario";
 }
 
 @section Breadcrumb{
@@ -32,7 +32,7 @@
                 <div class="col-sm-12 col-md-6 col-lg-6">
                     <div class="form-group">
                         @Html.LabelFor(model => model.Nombre, htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
+                        <div class="col-lg-12">
                             @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control" } })
                             @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
                         </div>
@@ -40,7 +40,7 @@
 
                     <div class="form-group">
                         @Html.LabelFor(model => model.Apellido, htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
+                        <div class="col-lg-12">
                             @Html.EditorFor(model => model.Apellido, new { htmlAttributes = new { @class = "form-control" } })
                             @Html.ValidationMessageFor(model => model.Apellido, "", new { @class = "text-danger" })
                         </div>
@@ -48,7 +48,7 @@
 
                     <div class="form-group">
                         @Html.LabelFor(model => model.Correo, htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
+                        <div class="col-lg-12">
                             @Html.EditorFor(model => model.Correo, new { htmlAttributes = new { @class = "form-control" } })
                             @Html.ValidationMessageFor(model => model.Correo, "", new { @class = "text-danger" })
                         </div>
@@ -56,7 +56,7 @@
 
                     <div class="form-group">
                         @Html.LabelFor(model => model.FechaRegistro, htmlAttributes: new { @class = "control-label col-md-6" })
-                        <div class="col-md-10">
+                        <div class="col-lg-12">
                             @Html.EditorFor(model => model.FechaRegistro, new { htmlAttributes = new { @class = "form-control" } })
                             @Html.ValidationMessageFor(model => model.FechaRegistro, "", new { @class = "text-danger" })
                         </div>
@@ -65,7 +65,7 @@
                 <div class="col-sm-12 col-md-6 col-lg-6">
                     <div class="form-group">
                         @Html.LabelFor(model => model.Contrasenia, htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
+                        <div class="col-lg-12">
                             @Html.EditorFor(model => model.Contrasenia, new { htmlAttributes = new { @class = "form-control" } })
                             @Html.ValidationMessageFor(model => model.Contrasenia, "", new { @class = "text-danger" })
                         </div>
@@ -73,7 +73,7 @@
 
                     <div class="form-group">
                         @Html.LabelFor(model => model._Contrasenia, htmlAttributes: new { @class = "control-label col-md-6" })
-                        <div class="col-md-10">
+                        <div class="col-lg-12">
                             @Html.EditorFor(model => model._Contrasenia, new { htmlAttributes = new { @class = "form-control" } })
                             @Html.ValidationMessageFor(model => model._Contrasenia, "", new { @class = "text-danger" })
                         </div>
@@ -81,7 +81,7 @@
 
                     <div class="form-group">
                         @Html.LabelFor(model => model.EsActivo, htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
+                        <div class="col-lg-12">
                             <div class="checkbox">
                                 @Html.DropDownListFor(model => model.EsActivo, Html.OptionsForBoolean(model => model.EsActivo), htmlAttributes: new { @class = "form-control" })
                                 @*@Html.EditorFor(model => model.EsActivo)*@

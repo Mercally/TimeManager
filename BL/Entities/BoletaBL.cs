@@ -32,7 +32,7 @@ namespace TimeManager.BL.Entities
                         HoraSalida = Row.IsNull("HoraSalida") ? TimeSpan.MinValue : Converting.SqlTimeToTimeSpan(Row["HoraSalida"]),
                         NumeroBoleta = Row.IsNull("NumeroBoleta") ? "N/A" : Convert.ToString(Row["NumeroBoleta"]),
                         ProyectoId = Row.IsNull("ProyectoId") ? 0 : Convert.ToInt32(Row["ProyectoId"]),
-                        TiempoEfectivo = Row.IsNull("TiempoEfectivo") ? TimeSpan.MinValue : Converting.SqlTimeToTimeSpan(Row["TiempoEfectivo"]),
+                        TiempoEfectivo = Row.IsNull("TiempoEfectivo") ? 0 : Convert.ToDecimal(Row["TiempoEfectivo"]),
                         TiempoInvertidoEn = Row.IsNull("TiempoInvertidoEn") ? 0 : Convert.ToInt32(Row["TiempoInvertidoEn"]),
                         UsuarioId = Row.IsNull("UsuarioId") ? 0 : Convert.ToInt32(Row["UsuarioId"]),
                         EsActivo = Row.IsNull("EsActivo") ? false : Convert.ToBoolean(Row["EsActivo"]),
