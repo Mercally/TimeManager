@@ -92,7 +92,7 @@ namespace TimeManager.WebApp.Controllers
 
             JsonResponse JsonResponse = new JsonResponse()
             {
-                IsSuccess = true
+                IsSuccess = IsDelete
             };
             return Json(JsonResponse);
         }

@@ -31,7 +31,7 @@ namespace TimeManager.Common.Entities
         [System.ComponentModel.DataAnnotations.Compare("Contrasenia", ErrorMessage = "Las contraseñas no coinciden")]
         public string _Contrasenia { get; set; }
         [HiddenInput]
-        [DisplayName("Fecha registrado")]
+        [DisplayName("Fecha registro")]
         public DateTime FechaRegistro { get; set; }
         [HiddenInput]
         [DisplayName("Estado")]

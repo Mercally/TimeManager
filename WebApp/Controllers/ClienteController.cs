@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using TimeManager.Common.Entities;
 using TimeManager.BL.Entities;
+using TimeManager.WebApp.Http;
 
 namespace TimeManager.WebApp.Controllers
 {
@@ -53,6 +54,18 @@ namespace TimeManager.WebApp.Controllers
                 ModelState.AddModelError(string.Empty, "Ocurrió un error al ingresar el cliente");
                 return View();
             }
-        }        
+        }
+
+        [HttpPost]
+        public ActionResult Delete(int id)
+        {
+            bool IsDelete = ClienteBL.Delete(id);
+
+            JsonResponse JsonResponse = new JsonResponse()
+            {
+                IsSuccess = IsDelete
+            };
+            return Json(JsonResponse);
+        }
     }
 }

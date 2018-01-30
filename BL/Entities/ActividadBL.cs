@@ -25,6 +25,9 @@ namespace TimeManager.BL.Entities
                         Id = Row.IsNull("Id") ? 0 : Convert.ToInt32(Row["Id"]),
                         Descripcion = Row.IsNull("Descripcion") ? "N/A" : Convert.ToString(Row["Descripcion"]),
                         EstadoId = Row.IsNull("Id") ? 0 : Convert.ToInt32(Row["Id"]),
+                        BoletaId = Row.IsNull("BoletaId") ? 0 : Convert.ToInt32(Row["BoletaId"]),
+                        FechaActividad = Row.IsNull("FechaActividad") ? DateTime.Now : Convert.ToDateTime(Row["FechaActividad"]),
+                        TiempoActividad = Row.IsNull("TiempoActividad") ? 0 : Convert.ToDecimal(Row["TiempoActividad"]),
                         EsActivo = Row.IsNull("EsActivo") ? false : Convert.ToBoolean(Row["EsActivo"]),
                         FechaRegistro = Row.IsNull("FechaRegistro") ? DateTime.Now : Convert.ToDateTime(Row["FechaRegistro"])
                     });
@@ -43,6 +46,23 @@ namespace TimeManager.BL.Entities
             try
             {
                 var Query = ActividadQuerys.GetList(onlyActives);
+                var Result = Commands.ExecuteQuery(Query);
+
+                ListActividad = GetData(Result);
+            }
+            catch (Exception ex)
+            {
+                ExceptionUtility.LogError(ex);
+            }
+            return ListActividad;
+        }
+
+        public static List<Actividad> GetList(int boletaId, bool onlyActives = true)
+        {
+            List<Actividad> ListActividad = new List<Actividad>();
+            try
+            {
+                var Query = ActividadQuerys.GetList(boletaId, onlyActives);
                 var Result = Commands.ExecuteQuery(Query);
 
                 ListActividad = GetData(Result);

@@ -1,0 +1,118 @@
+﻿@model TimeManager.Common.Entities.Boleta
+
+@{
+    ViewBag.Title = "Editar boleta";
+}
+
+@section Breadcrumb{
+    <li class="breadcrumb-item">@Html.ActionLink("Dashboard", "Index", "Dashboard")</li>
+    <li class="breadcrumb-item">@Html.ActionLink("Boleta", "Index", "Boleta")</li>
+    <li class="breadcrumb-item active">Editar</li>
+}
+
+<div class="row">
+    <div class="col-sm-12 col-lg-3">
+        <div class="card text-white bg-primary mb-0">
+            <div class="card-header"><h4><i class="fa fa-sticky-note"></i>&nbsp;Bolera</h4></div>
+            <div class="card-body">
+                <h5>Editar una boleta</h5>
+                <p class="card-text">Modifique la información necesaria de la boleta.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-12 col-lg-9">
+        @using (Html.BeginForm("Edit", "Boleta", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-row">
+                <div class="col-sm-12 col-md-6 col-lg-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.NumeroBoleta, htmlAttributes: new { @class = "control-label col-md-12" })
+                        <div class="col-md-12">
+                            @Html.EditorFor(model => model.NumeroBoleta, new { htmlAttributes = new { @class = "form-control col-sm-12" } })
+                            @Html.ValidationMessageFor(model => model.NumeroBoleta, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.ClienteId, htmlAttributes: new { @class = "control-label col-md-12" })
+                        <div class="col-md-12">
+                            @Html.DropDownListFor(model => model.ClienteId, ViewBag.ListCliente as SelectList, new { @class = "form-control col-sm-12" })
+                            @Html.ValidationMessageFor(model => model.ClienteId, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.ProyectoId, htmlAttributes: new { @class = "control-label col-md-12" })
+                        <div class="col-md-12">
+                            @Html.DropDownListFor(model => model.ProyectoId, ViewBag.ListProyecto as SelectList, new { @class = "form-control col-sm-12" })
+                            @Html.ValidationMessageFor(model => model.ProyectoId, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.Label("Fecha y hora de entrada", htmlAttributes: new { @class = "control-label col-md-12" })
+                        <div class="col-md-12">
+                            <div class="input-group">
+                                @Html.EditorFor(model => model.FechaEntrada, new { htmlAttributes = new { @type = "Date", @class = "form-control" } })
+                                @Html.EditorFor(model => model.HoraEntrada, new { htmlAttributes = new { @type = "Time", @class = "form-control" } })
+                            </div>
+                            @Html.ValidationMessageFor(model => model.FechaEntrada, "", new { @class = "text-danger" })
+                            @Html.ValidationMessageFor(model => model.HoraEntrada, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.Label("Fecha y hora de salida", htmlAttributes: new { @class = "control-label col-md-12" })
+                        <div class="col-md-12">
+                            <div class="input-group">
+                                @Html.EditorFor(model => model.FechaSalida, new { htmlAttributes = new { @type = "Date", @class = "form-control" } })
+                                @Html.EditorFor(model => model.HoraSalida, new { htmlAttributes = new { @type = "Time", @class = "form-control" } })
+                            </div>
+                            @Html.ValidationMessageFor(model => model.FechaSalida, "", new { @class = "text-danger" })
+                            @Html.ValidationMessageFor(model => model.HoraSalida, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.TiempoEfectivo, htmlAttributes: new { @class = "control-label col-md-12" })
+                        <div class="col-md-12">
+                            @Html.EditorFor(model => model.TiempoEfectivo, new { htmlAttributes = new { @type = "number", @class = "form-control col-sm-12", @step = "0.1" } })
+                            @Html.ValidationMessageFor(model => model.TiempoEfectivo, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.TiempoInvertidoEn, htmlAttributes: new { @class = "control-label col-md-12" })
+                        <div class="col-md-12">
+                            @Html.DropDownListFor(model => model.TiempoInvertidoEn, ViewBag.ListTiempoInvertido as SelectList, new { @class = "form-control col-sm-12" })
+                            @Html.ValidationMessageFor(model => model.TiempoInvertidoEn, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.DepartamentoId, htmlAttributes: new { @class = "control-label col-md-12" })
+                        <div class="col-md-12">
+                            @Html.DropDownListFor(model => model.DepartamentoId, ViewBag.Departamento as SelectList, new { @class = "form-control col-sm-12" })
+                            @Html.ValidationMessageFor(model => model.DepartamentoId, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.Label("Actividades", htmlAttributes: new { @class = "control-label col-md-12" })
+                        <div class="col-md-12">
+                            @Html.ActionLink("Gestionar actividades", "Index", new { controller = "Actividad", id = Model.Id }, null)
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col-sm-12 col-md-12 col-lg-12">
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            <input type="submit" value="Guardar nuevo" class="btn btn-default" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+<div>
+    @Html.ActionLink("Volver", "Index")
+</div>

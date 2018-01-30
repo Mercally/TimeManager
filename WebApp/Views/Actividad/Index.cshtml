@@ -1,0 +1,66 @@
+﻿@model IEnumerable<TimeManager.Common.Entities.Actividad>
+
+@{
+    ViewBag.Title = "Boleta";
+
+    var BoletaId = Url.RequestContext.RouteData.Values["id"];
+
+    decimal TotalTiempo = 0;
+}
+@section Breadcrumb{
+    <li class="breadcrumb-item">@Html.ActionLink("Dashboard", "Index", "Dashboard")</li>
+    <li class="breadcrumb-item">@Html.ActionLink("Boleta", "Index", "Boleta")</li>
+    <li class="breadcrumb-item">@Html.ActionLink("Editar", "Edit", new { controller = "Boleta", id = BoletaId })</li>
+    <li class="breadcrumb-item active">Actividad</li>
+}
+
+<p>
+    @Html.ActionLink("Crear", "Create", new { id = BoletaId }, new { @class = "btn btn-success btn-sm", @data_toggle = "tooltip", @data_placement = "bottom", @data_original_title = "Crear una nueva actividad" })
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Descripcion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaActividad)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TiempoActividad)
+            </th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Descripcion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FechaActividad)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TiempoActividad)
+                </td>
+                <td>
+                    @Html.ActionLink("Editar", "Edit", new { id = item.Id }, new { @class = "btn btn-warning btn-sm" })&nbsp;
+                    @Html.ActionLink("Detalles", "Details", new { id = item.Id }, new { @class = "btn btn-info btn-sm" })&nbsp;
+                    @Html.ActionLink("Eliminar", "Delete", new { id = item.Id }, new { @class = "btn btn-danger btn-sm btnDelete" })
+                </td>
+            </tr>
+
+            TotalTiempo += item.TiempoActividad;
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <th></th>
+            <th>Total tiempo</th>
+            <th>@TotalTiempo</th>
+            <th></th>
+        </tr>
+    </tfoot>
+</table>

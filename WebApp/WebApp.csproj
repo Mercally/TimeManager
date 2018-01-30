@@ -395,6 +395,7 @@
     <Content Include="Scripts\popper-utils.min.js" />
     <Content Include="Scripts\popper.js" />
     <Content Include="Scripts\popper.min.js" />
+    <Content Include="Scripts\Site\Common.css" />
     <Content Include="Scripts\umd\popper-utils.js" />
     <Content Include="Scripts\umd\popper-utils.min.js" />
     <Content Include="Scripts\umd\popper.js" />
@@ -449,6 +450,8 @@
     <Content Include="Views\Proyecto\Index.cshtml" />
     <Content Include="Views\Proyecto\Details.cshtml" />
     <Content Include="Views\Proyecto\Create.cshtml" />
+    <Content Include="Views\Boleta\Edit.cshtml" />
+    <Content Include="Views\Actividad\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

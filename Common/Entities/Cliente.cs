@@ -13,10 +13,15 @@ namespace TimeManager.Common.Entities
     {
         [HiddenInput]
         public int Id { get; set; }
+        [Required]
+        [MaxLength(99)]
+        [DisplayName("Nombre cliente")]
         public string Nombre { get; set; }
         [HiddenInput]
+        [DisplayName("Fecha registro")]
         public DateTime FechaRegistro { get; set; }
         [HiddenInput]
+        [DisplayName("Estado")]
         public bool EsActivo { get; set; }
     }
 }

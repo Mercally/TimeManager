@@ -83,13 +83,54 @@ namespace TimeManager.WebApp.Controllers
 
         public ActionResult Edit(int id)
         {
-            return View();
+            Boleta Boleta = BoletaBL.GetById(id);
+
+            if (Boleta != null)
+            {
+                var ListCliente = ClienteBL.GetList();
+                var ListClienteItems = ListCliente.Select(x => new SelectListItem() { Text = x.Nombre, Value = x.Id.ToString() }).ToList();
+                ListClienteItems.Insert(0, new SelectListItem() { Text = "Seleccione", Value = "0" });
+                ViewBag.ListCliente = new SelectList(ListClienteItems, "Value", "Text");
+
+                var ListProyecto = ProyectoBL.GetList();
+                var ListProyectoItems = ListProyecto.Select(x => new SelectListItem() { Text = x.Nombre, Value = x.Id.ToString() }).ToList();
+                ListProyectoItems.Insert(0, new SelectListItem() { Text = "Seleccione", Value = "0" });
+                ViewBag.ListProyecto = new SelectList(ListProyectoItems, "Value", "Text");
+
+                var ListTiempoInvertido = CatalogoBL.GetList(CatalogoEnum.TiempoInvertido);
+                var ListTiempoInvertidoItems = ListTiempoInvertido.Select(x => new SelectListItem() { Text = x.Nombre, Value = x.Id.ToString() }).ToList();
+                ListTiempoInvertidoItems.Insert(0, new SelectListItem() { Text = "Seleccione", Value = "0" });
+                ViewBag.ListTiempoInvertido = new SelectList(ListTiempoInvertidoItems, "Value", "Text");
+
+                var ListDepartamento = CatalogoBL.GetList(CatalogoEnum.Departamento);
+                var ListDepartamentoItems = ListDepartamento.Select(x => new SelectListItem() { Text = x.Nombre, Value = x.Id.ToString() }).ToList();
+                ListDepartamentoItems.Insert(0, new SelectListItem() { Text = "Seleccione", Value = "0" });
+                ViewBag.Departamento = new SelectList(ListDepartamentoItems, "Value", "Text");
+
+                return View(Boleta);
+            }
+            else
+            {
+                return RedirectToAction("Index");
+            }
         }
 
         [HttpPost]
         public ActionResult Edit(Boleta boleta)
         {
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult Delete(int id)
+        {
+            bool IsDelete = BoletaBL.Delete(id);
+
+            JsonResponse JsonResponse = new JsonResponse()
+            {
+                IsSuccess = IsDelete
+            };
+            return Json(JsonResponse);
         }
     }
 }

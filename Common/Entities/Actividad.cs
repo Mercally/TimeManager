@@ -25,6 +25,7 @@ namespace TimeManager.Common.Entities
         [HiddenInput]
         public bool EsActivo { get; set; }
         [HiddenInput]
+        [DisplayName("Fecha registro")]
         public DateTime FechaRegistro { get; set; }
 
         [HiddenInput]
@@ -32,9 +33,11 @@ namespace TimeManager.Common.Entities
         [HiddenInput]
         public Boleta Boleta { get; set; }
 
+        [Required]
         [DisplayName("Fecha de actividad")]
         public DateTime FechaActividad { get; set; }
+        [Required]
         [DisplayName("Tiempo de actividad")]
-        public TimeSpan TiempoActividad { get; set; }
+        public decimal TiempoActividad { get; set; }
     }
 }

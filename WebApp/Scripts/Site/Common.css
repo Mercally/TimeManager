@@ -1,0 +1,12 @@
+﻿
+a:hover{
+    color: white;
+}
+
+.form-control[readonly]{
+    color: white;
+}
+
+.btn:hover {
+    color: white;
+}
