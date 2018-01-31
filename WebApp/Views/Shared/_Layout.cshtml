@@ -1,7 +1,7 @@
 ﻿@using TimeManager.WebApp.Extensions
 
 <!DOCTYPE html>
-<html>
+<html lang="es-sv">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -33,6 +33,9 @@
                     </li>
                     <li class="nav-item @Html.IsSelected("Proyecto")">
                         @Html.ActionLink("Proyecto", "Index", "Proyecto", null, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item @Html.IsSelected("Reporte")">
+                        @Html.ActionLink("Reportes", "Index", "Reporte", null, new { @class = "nav-link" })
                     </li>
                 </ul>
                 <form class="form-inline my-2 my-lg-0">

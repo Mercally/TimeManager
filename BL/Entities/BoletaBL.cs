@@ -126,5 +126,22 @@ namespace TimeManager.BL.Entities
             }
             return Result;
         }
+
+        public static List<Boleta> GetReporteFechas(string del, string hasta, bool onlyActives = true)
+        {
+            List<Boleta> ListBoleta = new List<Boleta>();
+            try
+            {
+                var Query = BoletaQuerys.GetReporteFechas(del, hasta, onlyActives);
+                var Result = Commands.ExecuteQuery(Query);
+
+                ListBoleta = GetData(Result);
+            }
+            catch (Exception ex)
+            {
+                ExceptionUtility.LogError(ex);
+            }
+            return ListBoleta;
+        }
     }
 }

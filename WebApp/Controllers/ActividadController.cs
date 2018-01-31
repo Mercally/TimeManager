@@ -20,24 +20,23 @@ namespace TimeManager.WebApp.Controllers
             return View(ListActividad);
         }
 
+        // GET: Index/id:int -> actividadId
+        public ActionResult Details(int id)
+        {
+            Actividad Actividad = ActividadBL.GetById(id);
+            return View(Actividad);
+        }
+
         // GET: Create/id:int -> boletaId
         public ActionResult Create(int id)
         {
-            Boleta Boleta = BoletaBL.GetById(id);
-            if (Boleta != null)
-            {
-                var ListEstadoActividad = CatalogoBL.GetList(CatalogoEnum.EstadoVisita);
-                var ListEstadoActividadItems = ListEstadoActividad.Select(x => new SelectListItem() { Text = x.Nombre, Value = x.Id.ToString() }).ToList();
-                ListEstadoActividadItems.Insert(0, new SelectListItem() { Text = "Seleccione", Value = "0" });
-                ViewBag.ListEstadoActividad = new SelectList(ListEstadoActividadItems, "Value", "Text");
+            var ListEstadoActividad = CatalogoBL.GetList(CatalogoEnum.EstadoVisita);
+            var ListEstadoActividadItems = ListEstadoActividad.Select(x => new SelectListItem() { Text = x.Nombre, Value = x.Id.ToString() }).ToList();
+            ListEstadoActividadItems.Insert(0, new SelectListItem() { Text = "Seleccione", Value = "0" });
+            ViewBag.ListEstadoActividad = new SelectList(ListEstadoActividadItems, "Value", "Text");
 
-                Actividad model = new Actividad() { BoletaId = id };
-                return View(model);
-            }
-            else
-            {
-                return RedirectToAction("Edit", "Boleta", new { id });
-            }
+            Actividad model = new Actividad() { BoletaId = id };
+            return View(model);
         }
 
         [HttpPost]
@@ -45,7 +44,6 @@ namespace TimeManager.WebApp.Controllers
         {
             actividad.FechaRegistro = DateTime.Now;
             actividad.EsActivo = true;
-            actividad.Descripcion = CombineDescription(actividad.Descripcion, actividad.FechaActividad, actividad.TiempoActividad);
             actividad = ActividadBL.Create(actividad);
             if (actividad.Id > 0)
             {
@@ -54,13 +52,36 @@ namespace TimeManager.WebApp.Controllers
             }
             else
             {
+                ModelState.AddModelError(string.Empty, "Ocurrió un error al crear la actividad");
                 return RedirectToAction("Create", new { id = actividad.BoletaId });
             }
         }
 
-        public ActionResult Edit(int boletaId, int id)
+        // GET: Index/id:int -> actividadId
+        public ActionResult Edit(int id)
         {
-            return View();
+            var ListEstadoActividad = CatalogoBL.GetList(CatalogoEnum.EstadoVisita);
+            var ListEstadoActividadItems = ListEstadoActividad.Select(x => new SelectListItem() { Text = x.Nombre, Value = x.Id.ToString() }).ToList();
+            ListEstadoActividadItems.Insert(0, new SelectListItem() { Text = "Seleccione", Value = "0" });
+            ViewBag.ListEstadoActividad = new SelectList(ListEstadoActividadItems, "Value", "Text");
+
+            Actividad model = ActividadBL.GetById(id);
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(Actividad actividad)
+        {
+            bool IsUpdate = ActividadBL.Update(actividad);
+            if (IsUpdate)
+            {
+                return RedirectToAction("Details", new { id = actividad.Id });
+            }
+            else
+            {
+                ModelState.AddModelError(string.Empty, "Ocurrió un error al modificar la actividad");
+                return RedirectToAction("Edit", new { id = actividad.BoletaId });
+            }
         }
 
         [HttpPost]
@@ -75,6 +96,13 @@ namespace TimeManager.WebApp.Controllers
             return Json(JsonResponse);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="descripcion"></param>
+        /// <param name="fecha"></param>
+        /// <param name="tiempo"></param>
+        /// <returns></returns>
         private string CombineDescription(string descripcion, DateTime fecha, decimal tiempo)
         {
             return $"{descripcion} - {fecha.ToShortDateString()} - {tiempo.ToString()} H";

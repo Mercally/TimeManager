@@ -1,0 +1,112 @@
+﻿@model IEnumerable<TimeManager.Common.Entities.Boleta>
+
+@{
+    ViewBag.Title = "Reporte Boletas";
+}
+@section Breadcrumb{
+    <li class="breadcrumb-item">@Html.ActionLink("Dashboard", "Index", "Dashboard")</li>
+    <li class="breadcrumb-item">@Html.ActionLink("Reportes", "Index", "Reporte")</li>
+    <li class="breadcrumb-item active">Boletas</li>
+}
+
+<form action="@Url.Action("Boletas")" method="get">
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="form-group">
+                <label class="control-label col-md-6">Fecha desde</label>
+                <div class="col-sm-12">
+                    <input type="date" name="del" value="" class="form-control" required />
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="form-group">
+                <label class="control-label col-md-6">Fecha hasta</label>
+                <div class="col-sm-12">
+                    <input type="date" name="hasta" value="" class="form-control" required />
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <label class="control-label col-md-6">Filtro</label>
+            <div class="col-sm-12">
+                <input type="submit" value="Filtrar" class="btn btn-success" />
+                <a href="@Url.Action("Boletas")" class="btn btn-danger">Limpiar</a>
+            </div>
+        </div>
+    </div>
+    
+        
+</form>
+
+<div class="row">
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.NumeroBoleta)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaEntrada)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HoraEntrada)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaSalida)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HoraSalida)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TiempoEfectivo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TiempoInvertidoEn)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProyectoId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ClienteId)
+            </th>
+            <th>Detalle</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NumeroBoleta)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FechaEntrada)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HoraEntrada)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FechaSalida)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HoraSalida)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TiempoEfectivo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TiempoInvertidoEn)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProyectoId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ClienteId)
+                </td>
+                <td>
+                    @Html.ActionLink("Details", "Details", new { id = item.Id })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

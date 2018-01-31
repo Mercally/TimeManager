@@ -118,5 +118,27 @@ namespace TimeManager.DAL.Querys
             };
             return QueryDelete;
         }
+
+        public static Query GetReporteFechas(string del, string hasta, bool onlyActives)
+        {
+            Query QueryGetById = new Query()
+            {
+                RawQuery = "SELECT Id, NumeroBoleta, FechaEntrada, HoraEntrada, FechaSalida, HoraSalida, TiempoEfectivo, TiempoInvertidoEn, ProyectoId, ClienteId, FechaRegistro, UsuarioId, DepartamentoId, EsActivo " +
+                "FROM com.Boleta " +
+                "WHERE (FechaEntrada >= @fechaEntrada AND FechaSalida <= @fechaSalida) ",
+                Parameters = new List<SqlParameter>() {
+                            new SqlParameter() { ParameterName = "fechaEntrada", Value = del },
+                            new SqlParameter() { ParameterName = "fechaSalida", Value = hasta }
+                },
+                Type = TypeCrud.Query
+            };
+
+            if (onlyActives)
+            {
+                QueryGetById.RawQuery += "AND EsActivo=1;";
+            }
+
+            return QueryGetById;
+        }
     }
 }

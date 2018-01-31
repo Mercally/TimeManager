@@ -25,6 +25,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Database", "Database", "{F1
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BL", "Testing\BL\BL.csproj", "{D1AEB706-8A84-4FB1-8277-04F5DCAAF7FC}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Testing", "Testing", "{956F68EB-7453-4504-BE80-9C95A4B538AB}"
+	ProjectSection(SolutionItems) = preProject
+		Querys.sql = Querys.sql
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -62,6 +67,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{C85BACF4-0F74-4EC2-9B4C-606025767675} = {B955D934-185F-44D1-A119-70FD721CB83B}
 		{D1AEB706-8A84-4FB1-8277-04F5DCAAF7FC} = {B955D934-185F-44D1-A119-70FD721CB83B}
+		{956F68EB-7453-4504-BE80-9C95A4B538AB} = {F10BE278-699A-4EBC-A221-1A7B44AF1CDE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F98FB78A-84CC-4EE5-8B1D-1A02F06BDB78}

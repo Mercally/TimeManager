@@ -37,5 +37,14 @@ namespace TimeManager.Common.Methods
 
             return TimeSpan.MinValue;
         }
+
+        public static string DateTimeToSqlString(DateTime date, int sumDays = 0)
+        {
+            if(sumDays > 0)
+            {
+                date.AddDays(sumDays);
+            }
+            return $"{date.Year}{date.ToString("MM")}{date.ToString("dd")}";
+        }
     }
 }
