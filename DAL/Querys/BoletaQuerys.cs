@@ -16,7 +16,7 @@ namespace TimeManager.DAL.Querys
         {
             Query QueryGetById = new Query()
             {
-                RawQuery = "SELECT Id, NumeroBoleta, FechaEntrada, HoraEntrada, FechaSalida, HoraSalida, TiempoEfectivo, TiempoInvertidoEn, ProyectoId, ClienteId, FechaRegistro, UsuarioId, DepartamentoId, EsActivo FROM com.Boleta ",
+                RawQuery = "SELECT Id, NumeroBoleta, FechaEntrada, FechaSalida, TiempoEfectivo, TiempoInvertidoEn, ProyectoId, ClienteId, FechaRegistro, UsuarioId, DepartamentoId, EsActivo FROM com.Boleta ",
                 Type = TypeCrud.Query
             };
 
@@ -32,7 +32,7 @@ namespace TimeManager.DAL.Querys
         {
             Query QueryGetById = new Query()
             {
-                RawQuery = "SELECT Id, NumeroBoleta, FechaEntrada, HoraEntrada, FechaSalida, HoraSalida, TiempoEfectivo, TiempoInvertidoEn, ProyectoId, ClienteId, FechaRegistro, UsuarioId, DepartamentoId, EsActivo FROM com.Boleta Where Id = @id ",
+                RawQuery = "SELECT Id, NumeroBoleta, FechaEntrada, FechaSalida, TiempoEfectivo, TiempoInvertidoEn, ProyectoId, ClienteId, FechaRegistro, UsuarioId, DepartamentoId, EsActivo FROM com.Boleta Where Id = @id ",
                 Parameters = new List<SqlParameter>() { new SqlParameter("id", id) },
                 Type = TypeCrud.Query
             };
@@ -49,14 +49,12 @@ namespace TimeManager.DAL.Querys
         {
             Query QueryCreate = new Query()
             {
-                RawQuery = "INSERT INTO com.Boleta(NumeroBoleta, FechaEntrada, HoraEntrada, FechaSalida, HoraSalida, TiempoEfectivo, TiempoInvertidoEn, ProyectoId, ClienteId, UsuarioId, DepartamentoId, FechaRegistro, EsActivo) " +
+                RawQuery = "INSERT INTO com.Boleta(NumeroBoleta, FechaEntrada, FechaSalida, TiempoEfectivo, TiempoInvertidoEn, ProyectoId, ClienteId, UsuarioId, DepartamentoId, FechaRegistro, EsActivo) " +
                                         "VALUES(@numeroBoleta, @fechaEntrada, @horaEntrada, @fechaSalida, @horaSalida, @tiempoEfectivo, @tiempoInvertidoEn, @proyectoId, @clienteId, @usuarioId, @departamentoId, @fechaRegistro, @esActivo); SELECT SCOPE_IDENTITY();",
                 Parameters = new List<SqlParameter>() {
                                 new SqlParameter("numeroBoleta", boleta.NumeroBoleta),
                                 new SqlParameter("fechaEntrada", boleta.FechaEntrada),
-                                new SqlParameter("horaEntrada", Formatting.TimeSpanToSqlTime(boleta.HoraEntrada)),
                                 new SqlParameter("fechaSalida", boleta.FechaSalida),
-                                new SqlParameter("horaSalida", Formatting.TimeSpanToSqlTime(boleta.HoraSalida)),
                                 new SqlParameter("tiempoInvertidoEn", boleta.TiempoInvertidoEn),
                                 new SqlParameter("tiempoEfectivo", Convert.ToDecimal(boleta.TiempoEfectivo)),
                                 new SqlParameter("proyectoId", boleta.ProyectoId),
@@ -75,16 +73,14 @@ namespace TimeManager.DAL.Querys
         {
             Query QueryUpdate = new Query()
             {
-                RawQuery = "UPDATE com.Boleta SET NumeroBoleta=@numeroBoleta, FechaEntrada=@fechaEntrada, HoraEntrada=@horaEntrada, " +
-                            "FechaSalida=@fechaSalida, HoraSalida=@horaSalida, TiempoEfectivo=@tiempoEfectivo, TiempoInvertidoEn=@tiempoInvertidoEn, ProyectoId=@proyectoId, " +
+                RawQuery = "UPDATE com.Boleta SET NumeroBoleta=@numeroBoleta, FechaEntrada=@fechaEntrada, FechaSalida=@fechaSalida, " +
+                            "TiempoEfectivo=@tiempoEfectivo, TiempoInvertidoEn=@tiempoInvertidoEn, ProyectoId=@proyectoId, " +
                             "ClienteId=@clienteId, UsuarioId=@usuarioId, DepartamentoId=@departamentoId, FechaRegistro=@fechaRegistro, EsActivo=@esActivo WHERE Id=@id;",
                 Parameters = new List<SqlParameter>() {
                                 new SqlParameter("id", boleta.Id),
                                 new SqlParameter("numeroBoleta", boleta.NumeroBoleta),
                                 new SqlParameter("fechaEntrada", boleta.FechaEntrada),
-                                new SqlParameter("horaEntrada", Formatting.TimeSpanToSqlTime(boleta.HoraEntrada)),
                                 new SqlParameter("fechaSalida", boleta.FechaSalida),
-                                new SqlParameter("horaSalida", Formatting.TimeSpanToSqlTime(boleta.HoraSalida)),
                                 new SqlParameter("tiempoInvertidoEn", boleta.TiempoInvertidoEn),
                                 new SqlParameter("tiempoEfectivo", Convert.ToDecimal(boleta.TiempoEfectivo)),
                                 new SqlParameter("proyectoId", boleta.ProyectoId),
@@ -123,7 +119,7 @@ namespace TimeManager.DAL.Querys
         {
             Query QueryGetById = new Query()
             {
-                RawQuery = "SELECT Id, NumeroBoleta, FechaEntrada, HoraEntrada, FechaSalida, HoraSalida, TiempoEfectivo, TiempoInvertidoEn, ProyectoId, ClienteId, FechaRegistro, UsuarioId, DepartamentoId, EsActivo " +
+                RawQuery = "SELECT Id, NumeroBoleta, FechaEntrada, FechaSalida, TiempoEfectivo, TiempoInvertidoEn, ProyectoId, ClienteId, FechaRegistro, UsuarioId, DepartamentoId, EsActivo " +
                 "FROM com.Boleta " +
                 "WHERE (FechaEntrada >= @fechaEntrada AND FechaSalida <= @fechaSalida) ",
                 Parameters = new List<SqlParameter>() {

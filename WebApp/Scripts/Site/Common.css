@@ -7,6 +7,11 @@ a:hover{
     color: white;
 }
 
+.btn.btn-default:hover {
+    background-color:gray;
+}
+
 .btn:hover {
     color: white;
 }
+

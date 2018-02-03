@@ -31,9 +31,9 @@ namespace TimeManager.WebApp.Controllers
         public ActionResult Create(int id)
         {
             var ListEstadoActividad = CatalogoBL.GetList(CatalogoEnum.EstadoVisita);
-            var ListEstadoActividadItems = ListEstadoActividad.Select(x => new SelectListItem() { Text = x.Nombre, Value = x.Id.ToString() }).ToList();
-            ListEstadoActividadItems.Insert(0, new SelectListItem() { Text = "Seleccione", Value = "0" });
-            ViewBag.ListEstadoActividad = new SelectList(ListEstadoActividadItems, "Value", "Text");
+            ViewBag.ListEstadoActividad = Catalogo.GetSelectListFromCatalog(
+                ListEstadoActividad.Select(x => new Catalogo() { Id = x.Id, Nombre = x.Nombre }).ToList()
+                );
 
             Actividad model = new Actividad() { BoletaId = id };
             return View(model);
@@ -61,9 +61,9 @@ namespace TimeManager.WebApp.Controllers
         public ActionResult Edit(int id)
         {
             var ListEstadoActividad = CatalogoBL.GetList(CatalogoEnum.EstadoVisita);
-            var ListEstadoActividadItems = ListEstadoActividad.Select(x => new SelectListItem() { Text = x.Nombre, Value = x.Id.ToString() }).ToList();
-            ListEstadoActividadItems.Insert(0, new SelectListItem() { Text = "Seleccione", Value = "0" });
-            ViewBag.ListEstadoActividad = new SelectList(ListEstadoActividadItems, "Value", "Text");
+            ViewBag.ListEstadoActividad = Catalogo.GetSelectListFromCatalog(
+                ListEstadoActividad.Select(x => new Catalogo() { Id = x.Id, Nombre = x.Nombre }).ToList()
+                );
 
             Actividad model = ActividadBL.GetById(id);
             return View(model);

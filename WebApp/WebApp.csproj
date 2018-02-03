@@ -401,6 +401,13 @@
     <Content Include="Scripts\umd\popper-utils.min.js" />
     <Content Include="Scripts\umd\popper.js" />
     <Content Include="Scripts\umd\popper.min.js" />
+    <Content Include="Vendor\datetimepicker\index.html" />
+    <Content Include="Vendor\datetimepicker\jquery.datetimepicker.css" />
+    <Content Include="Vendor\datetimepicker\jquery.datetimepicker.full.js" />
+    <Content Include="Vendor\datetimepicker\jquery.datetimepicker.full.min.js" />
+    <Content Include="Vendor\datetimepicker\jquery.datetimepicker.js" />
+    <Content Include="Vendor\datetimepicker\jquery.datetimepicker.min.css" />
+    <Content Include="Vendor\datetimepicker\MIT-LICENSE.txt" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -457,6 +464,12 @@
     <Content Include="Views\Actividad\Edit.cshtml" />
     <Content Include="Views\Reporte\Index.cshtml" />
     <Content Include="Views\Reporte\Boletas.cshtml" />
+    <Content Include="Vendor\datetimepicker\bower.json" />
+    <Content Include="Vendor\datetimepicker\datetimepicker.jquery.json" />
+    <Content Include="Vendor\datetimepicker\doc.tpl" />
+    <Content Include="Vendor\datetimepicker\package.json" />
+    <Content Include="Vendor\datetimepicker\README.md" />
+    <Content Include="Vendor\datetimepicker\yarn.lock" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -470,7 +483,6 @@
     <Folder Include="Enums\" />
     <Folder Include="Helpers\" />
     <Folder Include="Models\" />
-    <Folder Include="Vendor\" />
     <Folder Include="ViewModels\" />
   </ItemGroup>
   <ItemGroup>

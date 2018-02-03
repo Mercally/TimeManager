@@ -1,7 +1,4 @@
-﻿$(function () {
-    $('[data-toggle="tooltip"]').tooltip()
-});
-
+﻿// Delete al elements
 $('body').on('click', 'a.btnDelete', function (evt) {
     evt.preventDefault();
     var $this = $(this);

@@ -18,17 +18,11 @@ namespace TimeManager.Common.Entities
         [DisplayName("Numero Boleta")]
         public string NumeroBoleta { get; set; }
         [Required]
-        [DisplayName("Fecha de entrada")]
+        [DisplayName("Fecha y hora de entrada")]
         public DateTime FechaEntrada { get; set; }
         [Required]
-        [DisplayName("Hora de entrada")]
-        public TimeSpan HoraEntrada { get; set; }
-        [Required]
-        [DisplayName("Fecha de salida")]
+        [DisplayName("Fecha y hora de salida")]
         public DateTime FechaSalida { get; set; }
-        [Required]
-        [DisplayName("Hora de salida")]
-        public TimeSpan HoraSalida { get; set; }
         [Required]
         [DisplayName("Tiempo efectivo")]
         public decimal TiempoEfectivo { get; set; }
@@ -46,6 +40,7 @@ namespace TimeManager.Common.Entities
         [HiddenInput]
         public int UsuarioId { get; set; }
         [Required]
+        [DisplayName("Departamento")]
         public int DepartamentoId { get; set; }
         [HiddenInput]
         public bool EsActivo { get; set; }

@@ -52,22 +52,18 @@
                         @Html.Label("Fecha y hora de entrada", htmlAttributes: new { @class = "control-label col-md-12" })
                         <div class="col-md-12">
                             <div class="input-group">
-                                @Html.EditorFor(model => model.FechaEntrada, new { htmlAttributes = new { @type = "Date", @class = "form-control" } })
-                                @Html.EditorFor(model => model.HoraEntrada, new { htmlAttributes = new { @type = "Time", @class = "form-control" } })
+                                @Html.EditorFor(model => model.FechaEntrada, new { htmlAttributes = new { @type = "datetime", @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.FechaEntrada, "", new { @class = "text-danger" })
                             </div>
-                            @Html.ValidationMessageFor(model => model.FechaEntrada, "", new { @class = "text-danger" })
-                            @Html.ValidationMessageFor(model => model.HoraEntrada, "", new { @class = "text-danger" })
                         </div>
                     </div>
                     <div class="form-group">
                         @Html.Label("Fecha y hora de salida", htmlAttributes: new { @class = "control-label col-md-12" })
                         <div class="col-md-12">
                             <div class="input-group">
-                                @Html.EditorFor(model => model.FechaSalida, new { htmlAttributes = new { @type = "Date", @class = "form-control" } })
-                                @Html.EditorFor(model => model.HoraSalida, new { htmlAttributes = new { @type = "Time", @class = "form-control" } })
+                                @Html.EditorFor(model => model.FechaSalida, new { htmlAttributes = new { @type = "datetime", @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.FechaSalida, "", new { @class = "text-danger" })
                             </div>
-                            @Html.ValidationMessageFor(model => model.FechaSalida, "", new { @class = "text-danger" })
-                            @Html.ValidationMessageFor(model => model.HoraSalida, "", new { @class = "text-danger" })
                         </div>
                     </div>
                 </div>

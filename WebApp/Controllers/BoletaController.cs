@@ -7,30 +7,12 @@ using TimeManager.Common.Entities;
 using TimeManager.BL.Entities;
 using TimeManager.WebApp.Http;
 using TimeManager.Common.Enums;
+using TimeManager.Common.Methods;
 
 namespace TimeManager.WebApp.Controllers
 {
     public class BoletaController : Controller
     {
-        [HttpPost]
-        public JsonResult RequestHandler(JsonRequest jsonRequest)
-        {
-            JsonResponse JsonResponse = new JsonResponse()
-            {
-                Modal = new Modal()
-                {
-                    Ajax = new Ajax()
-                    {
-                        UpdateElementId = $"DivFor{jsonRequest.Action}",
-                        Url = Url.Action(jsonRequest.Action, jsonRequest.Controller, new { id = jsonRequest.Id })
-                    },
-                    OpenModalId = $"{jsonRequest.Action}Modal"
-                },
-                IsSuccess = true
-            };
-            return Json(JsonResponse);
-        }
-
         public ActionResult Index()
         {
             var ListBoleta = BoletaBL.GetList(false);
@@ -40,24 +22,16 @@ namespace TimeManager.WebApp.Controllers
         public ActionResult Create()
         {
             var ListCliente = ClienteBL.GetList();
-            var ListClienteItems = ListCliente.Select(x => new SelectListItem() { Text = x.Nombre, Value = x.Id.ToString() }).ToList();
-            ListClienteItems.Insert(0, new SelectListItem() { Text = "Seleccione", Value = "0" });
-            ViewBag.ListCliente = new SelectList(ListClienteItems, "Value", "Text");
+            ViewBag.ListCliente = Catalogo.GetSelectListFromCatalog(ListCliente.Select(x => new Catalogo() { Id = x.Id, Nombre = x.Nombre }).ToList());
 
             var ListProyecto = ProyectoBL.GetList();
-            var ListProyectoItems = ListProyecto.Select(x => new SelectListItem() { Text = x.Nombre, Value = x.Id.ToString() }).ToList();
-            ListProyectoItems.Insert(0, new SelectListItem() { Text = "Seleccione", Value = "0" });
-            ViewBag.ListProyecto = new SelectList(ListProyectoItems, "Value", "Text");
+            ViewBag.ListProyecto = Catalogo.GetSelectListFromCatalog(ListProyecto.Select(x => new Catalogo() { Id = x.Id, Nombre = x.Nombre }).ToList());
 
             var ListTiempoInvertido = CatalogoBL.GetList(CatalogoEnum.TiempoInvertido);
-            var ListTiempoInvertidoItems = ListTiempoInvertido.Select(x => new SelectListItem() { Text = x.Nombre, Value = x.Id.ToString() }).ToList();
-            ListTiempoInvertidoItems.Insert(0, new SelectListItem() { Text = "Seleccione", Value = "0" });
-            ViewBag.ListTiempoInvertido = new SelectList(ListTiempoInvertidoItems, "Value", "Text");
+            ViewBag.ListTiempoInvertido = Catalogo.GetSelectListFromCatalog(ListTiempoInvertido);
 
             var ListDepartamento = CatalogoBL.GetList(CatalogoEnum.Departamento);
-            var ListDepartamentoItems = ListDepartamento.Select(x => new SelectListItem() { Text = x.Nombre, Value = x.Id.ToString() }).ToList();
-            ListDepartamentoItems.Insert(0, new SelectListItem() { Text = "Seleccione", Value = "0" });
-            ViewBag.Departamento = new SelectList(ListDepartamentoItems, "Value", "Text");
+            ViewBag.Departamento = Catalogo.GetSelectListFromCatalog(ListDepartamento);
 
             return View();
         }
@@ -88,24 +62,16 @@ namespace TimeManager.WebApp.Controllers
             if (Boleta != null)
             {
                 var ListCliente = ClienteBL.GetList();
-                var ListClienteItems = ListCliente.Select(x => new SelectListItem() { Text = x.Nombre, Value = x.Id.ToString() }).ToList();
-                ListClienteItems.Insert(0, new SelectListItem() { Text = "Seleccione", Value = "0" });
-                ViewBag.ListCliente = new SelectList(ListClienteItems, "Value", "Text");
+                ViewBag.ListCliente = Catalogo.GetSelectListFromCatalog(ListCliente.Select(x => new Catalogo() { Id = x.Id, Nombre = x.Nombre }).ToList());
 
                 var ListProyecto = ProyectoBL.GetList();
-                var ListProyectoItems = ListProyecto.Select(x => new SelectListItem() { Text = x.Nombre, Value = x.Id.ToString() }).ToList();
-                ListProyectoItems.Insert(0, new SelectListItem() { Text = "Seleccione", Value = "0" });
-                ViewBag.ListProyecto = new SelectList(ListProyectoItems, "Value", "Text");
+                ViewBag.ListProyecto = Catalogo.GetSelectListFromCatalog(ListProyecto.Select(x => new Catalogo() { Id = x.Id, Nombre = x.Nombre }).ToList());
 
                 var ListTiempoInvertido = CatalogoBL.GetList(CatalogoEnum.TiempoInvertido);
-                var ListTiempoInvertidoItems = ListTiempoInvertido.Select(x => new SelectListItem() { Text = x.Nombre, Value = x.Id.ToString() }).ToList();
-                ListTiempoInvertidoItems.Insert(0, new SelectListItem() { Text = "Seleccione", Value = "0" });
-                ViewBag.ListTiempoInvertido = new SelectList(ListTiempoInvertidoItems, "Value", "Text");
+                ViewBag.ListTiempoInvertido = Catalogo.GetSelectListFromCatalog(ListTiempoInvertido);
 
                 var ListDepartamento = CatalogoBL.GetList(CatalogoEnum.Departamento);
-                var ListDepartamentoItems = ListDepartamento.Select(x => new SelectListItem() { Text = x.Nombre, Value = x.Id.ToString() }).ToList();
-                ListDepartamentoItems.Insert(0, new SelectListItem() { Text = "Seleccione", Value = "0" });
-                ViewBag.Departamento = new SelectList(ListDepartamentoItems, "Value", "Text");
+                ViewBag.Departamento = Catalogo.GetSelectListFromCatalog(ListDepartamento);
 
                 return View(Boleta);
             }
