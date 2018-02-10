@@ -470,6 +470,7 @@
     <Content Include="Vendor\datetimepicker\package.json" />
     <Content Include="Vendor\datetimepicker\README.md" />
     <Content Include="Vendor\datetimepicker\yarn.lock" />
+    <Content Include="Views\Cliente\Edit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

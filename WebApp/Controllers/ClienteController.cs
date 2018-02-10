@@ -14,13 +14,13 @@ namespace TimeManager.WebApp.Controllers
         // GET: Cliente
         public ActionResult Index()
         {
-            var ListCliente = ClienteBL.GetList();
+            var ListCliente = ClienteBL.GetList(false);
             return View(ListCliente);
         }
 
         public ActionResult Details(int id)
         {
-            Cliente Cliente = ClienteBL.GetById(id);
+            Cliente Cliente = ClienteBL.GetById(id, false);
             if (Cliente != null)
             {
                 return View(Cliente);
@@ -47,6 +47,35 @@ namespace TimeManager.WebApp.Controllers
             if (cliente.Id > 0)
             {
 
+                return RedirectToAction("Details", new { id = cliente.Id });
+            }
+            else
+            {
+                ModelState.AddModelError(string.Empty, "Ocurrió un error al ingresar el cliente");
+                return View();
+            }
+        }
+
+        public ActionResult Edit(int id)
+        {
+            Cliente Cliente = ClienteBL.GetById(id, false);
+            if (Cliente != null)
+            {
+                return View(Cliente);
+            }
+            else
+            {
+                // Alerta de error
+                return RedirectToAction("Index");
+            }
+        }
+
+        [HttpPost]
+        public ActionResult Edit(Cliente cliente)
+        {
+            bool Success = ClienteBL.Update(cliente);
+            if (Success)
+            {
                 return RedirectToAction("Details", new { id = cliente.Id });
             }
             else

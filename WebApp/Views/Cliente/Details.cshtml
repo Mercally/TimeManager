@@ -1,42 +1,54 @@
-﻿@model TimeManager.Common.Entities.Cliente
-
+﻿@using TimeManager.WebApp.Extensions
+@using TimeManager.Common.Entities
+@model TimeManager.Common.Entities.Cliente
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Crear cliente";
+}
+@section Breadcrumb{
+    <li class="breadcrumb-item">@Html.ActionLink("Dashboard", "Index", "Dashboard")</li>
+    <li class="breadcrumb-item">@Html.ActionLink("Cliente", "Index", "Cliente")</li>
+    <li class="breadcrumb-item active">Detalles</li>
 }
 
-<h2>Details</h2>
-
-<div>
-    <h4>Cliente</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Nombre)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Nombre)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.FechaRegistro)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.FechaRegistro)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.EsActivo)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.EsActivo)
-        </dd>
-
-    </dl>
+<div class="row">
+    <div class="col-sm-12 col-lg-3">
+        <div class="card text-white bg-primary mb-0">
+            <div class="card-header"><h4><i class="fa fa-user-plus"></i>&nbsp;Cliente</h4></div>
+            <div class="card-body">
+                <h5>Detalle de cliente</h5>
+                <p class="card-text">Detalle de la información almacenada del cliente.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-12 col-lg-9">
+        <div class="form-row">
+            <div class="col-sm-12">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Nombre, htmlAttributes: new { @class = "control-label col-md-6" })
+                    <div class="col-sm-12">
+                        @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control col-sm-12", @readonly = "readonly" } })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.FechaRegistro, htmlAttributes: new { @class = "control-label col-md-6" })
+                    <div class="col-sm-12">
+                        @Html.EditorFor(model => model.FechaRegistro, new { htmlAttributes = new { @class = "form-control col-sm-12", @readonly = "readonly" } })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.EsActivo, htmlAttributes: new { @class = "control-label col-md-6" })
+                    <div class="col-sm-12">
+                        @Html.DropDownListFor(model => model.EsActivo, Html.OptionsForBoolean(model => model.EsActivo), htmlAttributes: new { @class = "form-control", @readonly = "readonly" })
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            @Html.ActionLink("Editar", "Edit", new { id = Model.Id })
+        </div>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+<div>
+    @Html.ActionLink("Volver", "Index")
+</div>
+

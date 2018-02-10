@@ -35,7 +35,7 @@ namespace TimeManager.BL.Entities
             }
             catch (Exception ex)
             {
-                // Exceptios
+                ExceptionUtility.LogError(ex);
             }
             return ListActividad;
         }

@@ -26,8 +26,6 @@ namespace TimeManager.Testing.BL.Entities
                 DepartamentoId = ListDepartamento.First().Id,
                 FechaEntrada = DateTime.Now,
                 FechaSalida = DateTime.Now,
-                HoraEntrada = DateTime.Now.TimeOfDay,
-                HoraSalida = DateTime.Now.TimeOfDay,
                 NumeroBoleta = "PRUEBA",
                 ProyectoId = ListProyecto.First().Id,
                 TiempoEfectivo = 0,
