@@ -153,14 +153,15 @@ Id INT NOT NULL PRIMARY KEY IDENTITY(1,1),
 NumeroBoleta VARCHAR(50) NOT NULL DEFAULT '',
 FechaEntrada SMALLDATETIME NOT NULL DEFAULT GETDATE(),
 FechaSalida SMALLDATETIME NOT NULL DEFAULT GETDATE(),
-TiempoEfectivo DECIMAL(4,2) NOT NULL DEFAULT 00.00,
+TiempoEfectivo DECIMAL(4,2),
 TiempoInvertidoEn INT NOT NULL REFERENCES cat.TiempoInvertido(Id),
 ProyectoId INT NOT NULL REFERENCES neg.Proyecto(Id),
 ClienteId INT NOT NULL REFERENCES neg.Cliente(Id),
 UsuarioId INT NOT NULL REFERENCES seg.Usuario(Id),
 DepartamentoId INT NOT NULL REFERENCES cat.Departamento(Id),
 FechaRegistro SMALLDATETIME NOT NULL DEFAULT GETDATE(),
-EsActivo BIT NOT NULL DEFAULT 1
+EsActivo BIT NOT NULL DEFAULT 1,
+EsCobrable BIT NOT NULL DEFAULT 1
 );
 GO
 
@@ -183,3 +184,9 @@ EsActivo BIT NOT NULL DEFAULT 1
 );
 GO
 
+-- Inserción de datos
+INSERT INTO cat.EstadoVisita(Nombre, FechaRegistro, EsActivo) VALUES ('Terminado', GETDATE(), 1);
+
+INSERT INTO cat.TiempoInvertido(Nombre, FechaRegistro, EsActivo) VALUES ('Administrativo', GETDATE(), 1);
+
+INSERT INTO cat.Departamento(Nombre, FechaRegistro, EsActivo) VALUES ('Desarrollo', GETDATE(), 1);

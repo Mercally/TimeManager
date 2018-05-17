@@ -3,6 +3,15 @@
 
 @{
     ViewBag.Title = "Editar actividad";
+
+    List<Actividad> ListActividad = new List<Actividad>();
+    if (ViewBag.ListActividades != null)
+    {
+        ListActividad = ViewBag.ListActividades as List<Actividad>;
+    }
+
+    decimal TotalTiempo = 0;
+    string ClaseSeleccionado = "";
 }
 
 @section Breadcrumb{
@@ -50,15 +59,16 @@
                     <div class="form-group">
                         @Html.LabelFor(model => model.FechaActividad, htmlAttributes: new { @class = "control-label col-sm-12" })
                         <div class="col-sm-12">
-                            @Html.EditorFor(model => model.FechaActividad, new { htmlAttributes = new { @type = "Date", @class = "form-control col-sm-12" } })
-                            @Html.ValidationMessageFor(model => model.FechaActividad, "", new { @class = "text-danger" })
+                            <div class="input-group">
+                                @Html.EditorFor(model => model.FechaActividad, new { htmlAttributes = new { @id = "FechaActividad", @type = "text", @class = "form-control col-sm-12" } })
+                                @Html.ValidationMessageFor(model => model.FechaActividad, "", new { @class = "text-danger" })
+                            </div>
                         </div>
                     </div>
-
                     <div class="form-group">
                         @Html.LabelFor(model => model.TiempoActividad, htmlAttributes: new { @class = "control-label col-sm-12" })
                         <div class="col-sm-12">
-                            @Html.EditorFor(model => model.TiempoActividad, new { htmlAttributes = new { @type = "number", @step = "0.1", @class = "form-control col-sm-12" } })
+                            @Html.EditorFor(model => model.TiempoActividad, new { htmlAttributes = new { @type = "number", @step = "0.01", @class = "form-control col-sm-12" } })
                             @Html.ValidationMessageFor(model => model.TiempoActividad, "", new { @class = "text-danger" })
                         </div>
                     </div>
@@ -74,8 +84,73 @@
                 </div>
             </div>
         }
+        <br />
+        <br />
+        <h5>Actividades en boleta:</h5>
+        <div class="table-scrollY">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>@Html.DisplayNameFor(m => m.Descripcion)</th>
+                        <th>@Html.DisplayNameFor(m => m.FechaActividad)</th>
+                        <th>@Html.DisplayNameFor(m => m.TiempoActividad)</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (ListActividad.Count > 0)
+                    {
+                        foreach (var item in ListActividad)
+                        {
+                            if (item.Id == Model.Id)
+                            {
+                                ClaseSeleccionado = "trSelected";
+                            }
+                            else
+                            {
+                                ClaseSeleccionado = "";
+                            }
+                            <tr class="@ClaseSeleccionado">
+                                <td>@item.Descripcion</td>
+                                <td>@item.FechaActividad</td>
+                                <td>@item.TiempoActividad</td>
+                                <td>
+                                    @Html.ActionLink("Editar", "Edit", new { id = item.Id }, new { @class = "btn btn-warning btn-sm" })&nbsp;
+                                    @Html.ActionLink("Eliminar", "Delete", new { id = item.Id }, new { @class = "btn btn-danger btn-sm btnDelete" })
+                                </td>
+                            </tr>
+                            TotalTiempo += item.TiempoActividad;
+                        }
+                    }
+                    else
+                    {
+                        <tr><th colspan="4">No existen actividades para la boleta actual</th></tr>
+                    }
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th></th>
+                        <th>Total tiempo</th>
+                        <th>@TotalTiempo</th>
+                        <th></th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
     </div>
 </div>
 <div>
     @Html.ActionLink("Volver", "Index", new { id = Model.BoletaId })
 </div>
+@section Styles{
+    <link href="~/Vendor/datetimepicker/jquery.datetimepicker.min.css" rel="stylesheet" />
+}
+
+@section Scripts{
+    <script src="~/Vendor/datetimepicker/jquery.datetimepicker.full.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $('#FechaActividad').datetimepicker();
+        });
+    </script>
+}

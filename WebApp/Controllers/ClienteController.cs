@@ -14,7 +14,7 @@ namespace TimeManager.WebApp.Controllers
         // GET: Cliente
         public ActionResult Index()
         {
-            var ListCliente = ClienteBL.GetList(false);
+            var ListCliente = ClienteBL.GetList();
             return View(ListCliente);
         }
 

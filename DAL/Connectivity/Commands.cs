@@ -48,6 +48,7 @@ namespace TimeManager.DAL.Connectivity
             {
                 Transaction.Rollback();
                 ExceptionUtility.LogError(ex, "Error al ejecutar consulta en base de datos", "DataTable ExecuteQuery(string Query, SqlParameter[] ListParameters, SqlTransaction Transaction)", "Commands", "TimeManager.DAL.Connectivity");
+                query.HasError = true;
             }
             return DataTable;
         }
@@ -79,6 +80,7 @@ namespace TimeManager.DAL.Connectivity
             {
                 Transaction.Rollback();
                 ExceptionUtility.LogError(ex, "Error al ejecutar consulta escalar en base de datos", "bool ExecuteNonQuery(string NonQuery, SqlParameter[] ListParameters, SqlTransaction Transaction)", "Commands", "TimeManager.DAL.Connectivity");
+                query.HasError = true;
             }
             return Result;
         }
@@ -111,6 +113,7 @@ namespace TimeManager.DAL.Connectivity
                 Transaction.Rollback();
                 ExceptionUtility.LogError(ex, "Error al ejecutar consulta escalar en base de datos", "object ExecuteScalar(string NonQuery, SqlParameter[] ListParameters, SqlTransaction Transaction)",
                     "Commands", "TimeManager.DAL.Connectivity");
+                query.HasError = true;
             }
             return Result;
         }

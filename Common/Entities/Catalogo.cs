@@ -16,11 +16,20 @@ namespace TimeManager.Common.Entities
 
         public static SelectList GetSelectListFromCatalog(List<Catalogo> list, bool hasSelectedItem = true, string textSelectedItem = "Seleccione")
         {
-            List<SelectListItem> ListItems = list.Select(x => new SelectListItem() { Text = x.Nombre, Value = x.Id.ToString() }).ToList();
+            List<SelectListItem> ListItems = 
+                list.Select(x => 
+                new SelectListItem() {
+                    Text = x.Nombre,
+                    Value = x.Id.ToString()
+                }).ToList();
 
             if (hasSelectedItem)
             {
-                ListItems.Insert(0, new SelectListItem() { Text = textSelectedItem, Value = "" });
+                ListItems.Insert(0, 
+                    new SelectListItem() {
+                        Text = textSelectedItem,
+                        Value = ""
+                    });
             }
 
             return new SelectList(ListItems, "Value", "Text"); ;

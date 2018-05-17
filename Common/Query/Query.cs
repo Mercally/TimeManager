@@ -22,9 +22,14 @@ namespace TimeManager.Common.Query
         /// Tipo de consulta CRUD
         /// </summary>
         public TypeCrud Type { get; set; }
+        /// <summary>
+        /// Determina si la consulta tiene errores
+        /// </summary>
+        public bool HasError { get; set; }
 
         public Query()
         {
+            this.HasError = false;
             this.Parameters = new List<SqlParameter>();
         }
     }

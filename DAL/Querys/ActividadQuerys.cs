@@ -88,15 +88,13 @@ namespace TimeManager.DAL.Querys
         {
             Query QueryUpdate = new Query()
             {
-                RawQuery = "UPDATE com.Actividad SET Descripcion=@descripcion, EstadoId=@estadoId, FechaActividad=@fechaActividad, TiempoActividad=@tiempoActividad, FechaRegistro=@fechaRegistro, EsActivo=@esActivo WHERE Id = @id;",
+                RawQuery = "UPDATE com.Actividad SET Descripcion=@descripcion, EstadoId=@estadoId, FechaActividad=@fechaActividad, TiempoActividad=@tiempoActividad WHERE Id = @id;",
                 Parameters = new List<SqlParameter>() {
                                 new SqlParameter("id", actividad.Id),
                                 new SqlParameter("descripcion", actividad.Descripcion),
                                 new SqlParameter("estadoId", actividad.EstadoId),
                                 new SqlParameter("fechaActividad", actividad.FechaActividad),
-                                new SqlParameter("tiempoActividad", actividad.TiempoActividad),
-                                new SqlParameter("fechaRegistro", actividad.FechaRegistro),
-                                new SqlParameter("esActivo", actividad.EsActivo)
+                                new SqlParameter("tiempoActividad", actividad.TiempoActividad)
                                 },
                 Type = TypeCrud.Update
             };
@@ -121,6 +119,20 @@ namespace TimeManager.DAL.Querys
                 Type = TypeCrud.Delete
             };
             return QueryDelete;
+        }
+
+        public static Query UpdateBoleta(Actividad actividad)
+        {
+            Query QueryUpdate = new Query()
+            {
+                RawQuery = "UPDATE com.Boleta SET TiempoEfectivo=(ISNULL(TiempoEfectivo,0)+ISNULL(@tiempoEfectivo,0)) WHERE Id = @boletaId;",
+                Parameters = new List<SqlParameter>() {
+                                new SqlParameter("boletaId", actividad.BoletaId),
+                                new SqlParameter("tiempoEfectivo", actividad.TiempoActividad)
+                                },
+                Type = TypeCrud.Update
+            };
+            return QueryUpdate;
         }
     }
 }

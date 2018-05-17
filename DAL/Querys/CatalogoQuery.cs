@@ -15,13 +15,17 @@ namespace TimeManager.DAL.Querys
         {
             Query QueryGetById = new Query()
             {
-                RawQuery = $"SELECT Id, Nombre, FechaRegistro, EsActivo FROM cat.{tableName} ",
+                RawQuery = $"SELECT Id, Nombre, FechaRegistro, EsActivo FROM cat.{tableName}",
                 Type = TypeCrud.Query
             };
 
             if (onlyActives)
             {
-                QueryGetById.RawQuery += "WHERE EsActivo=1;";
+                QueryGetById.RawQuery += " WHERE EsActivo=1;";
+            }
+            else
+            {
+                QueryGetById.RawQuery += ";";
             }
 
             return QueryGetById;

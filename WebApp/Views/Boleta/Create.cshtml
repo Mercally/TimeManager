@@ -68,13 +68,13 @@
                     </div>
                 </div>
                 <div class="col-sm-12 col-md-6 col-lg-6">
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.TiempoEfectivo, htmlAttributes: new { @class = "control-label col-md-12" })
+                    @*<div class="form-group">
+                        @Html.LabelFor(model => model.TiempoEfectivoId, htmlAttributes: new { @class = "control-label col-md-12" })
                         <div class="col-md-12">
-                            @Html.EditorFor(model => model.TiempoEfectivo, new { htmlAttributes = new { @id = "TiempoEfectivo", @type = "text", @class = "form-control col-sm-12" } })
-                            @Html.ValidationMessageFor(model => model.TiempoEfectivo, "", new { @class = "text-danger" })
+                            @Html.DropDownListFor(model => model.TiempoEfectivoId, ViewBag.TiempoEfectivo as SelectList, new { @class = "form-control col-sm-12" })
+                            @Html.ValidationMessageFor(model => model.TiempoEfectivoId, "", new { @class = "text-danger" })
                         </div>
-                    </div>
+                    </div>*@
                     <div class="form-group">
                         @Html.LabelFor(model => model.TiempoInvertidoEn, htmlAttributes: new { @class = "control-label col-md-12" })
                         <div class="col-md-12">
@@ -107,7 +107,6 @@
     @Html.ActionLink("Volver", "Index")
 </div>
 @section Styles{
-
     <link href="~/Vendor/datetimepicker/jquery.datetimepicker.min.css" rel="stylesheet" />
 }
 
@@ -115,10 +114,6 @@
     <script src="~/Vendor/datetimepicker/jquery.datetimepicker.full.min.js"></script>
     <script type="text/javascript">
         $(function () {
-            $('#TiempoEfectivo').datetimepicker({
-                datepicker: false,
-                format: 'H:i'
-            });
             $('#FechaEntrada').datetimepicker();
             $('#FechaSalida').datetimepicker();
         });

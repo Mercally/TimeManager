@@ -50,13 +50,13 @@ namespace TimeManager.DAL.Querys
             Query QueryCreate = new Query()
             {
                 RawQuery = "INSERT INTO com.Boleta(NumeroBoleta, FechaEntrada, FechaSalida, TiempoEfectivo, TiempoInvertidoEn, ProyectoId, ClienteId, UsuarioId, DepartamentoId, FechaRegistro, EsActivo) " +
-                                        "VALUES(@numeroBoleta, @fechaEntrada, @horaEntrada, @fechaSalida, @horaSalida, @tiempoEfectivo, @tiempoInvertidoEn, @proyectoId, @clienteId, @usuarioId, @departamentoId, @fechaRegistro, @esActivo); SELECT SCOPE_IDENTITY();",
+                                        "VALUES(@numeroBoleta, @fechaEntrada, @fechaSalida, @tiempoEfectivo, @tiempoInvertidoEn, @proyectoId, @clienteId, @usuarioId, @departamentoId, @fechaRegistro, @esActivo); SELECT SCOPE_IDENTITY();",
                 Parameters = new List<SqlParameter>() {
                                 new SqlParameter("numeroBoleta", boleta.NumeroBoleta),
                                 new SqlParameter("fechaEntrada", boleta.FechaEntrada),
                                 new SqlParameter("fechaSalida", boleta.FechaSalida),
                                 new SqlParameter("tiempoInvertidoEn", boleta.TiempoInvertidoEn),
-                                new SqlParameter("tiempoEfectivo", Convert.ToDecimal(boleta.TiempoEfectivo)),
+                                new SqlParameter("tiempoEfectivo", boleta.TiempoEfectivo),
                                 new SqlParameter("proyectoId", boleta.ProyectoId),
                                 new SqlParameter("clienteId", boleta.ClienteId),
                                 new SqlParameter("usuarioId", boleta.UsuarioId),
@@ -82,7 +82,7 @@ namespace TimeManager.DAL.Querys
                                 new SqlParameter("fechaEntrada", boleta.FechaEntrada),
                                 new SqlParameter("fechaSalida", boleta.FechaSalida),
                                 new SqlParameter("tiempoInvertidoEn", boleta.TiempoInvertidoEn),
-                                new SqlParameter("tiempoEfectivo", Convert.ToDecimal(boleta.TiempoEfectivo)),
+                                new SqlParameter("tiempoEfectivo", boleta.TiempoEfectivo),
                                 new SqlParameter("proyectoId", boleta.ProyectoId),
                                 new SqlParameter("clienteId", boleta.ClienteId),
                                 new SqlParameter("usuarioId", boleta.UsuarioId),

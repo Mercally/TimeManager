@@ -8,10 +8,28 @@ a:hover{
 }
 
 .btn.btn-default:hover {
-    background-color:gray;
+    background-color: darkseagreen;
 }
 
 .btn:hover {
     color: white;
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
 }
 
+input:hover {
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
+select:hover {
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
+.table-scrollY{
+    max-height: 250px;
+    overflow-y: auto;
+}
+
+.trSelected {
+    background-color: darkseagreen;
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}

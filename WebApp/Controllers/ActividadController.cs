@@ -35,6 +35,8 @@ namespace TimeManager.WebApp.Controllers
                 ListEstadoActividad.Select(x => new Catalogo() { Id = x.Id, Nombre = x.Nombre }).ToList()
                 );
 
+            ViewBag.ListActividades = ActividadBL.GetList(id);
+
             Actividad model = new Actividad() { BoletaId = id };
             return View(model);
         }
@@ -45,8 +47,10 @@ namespace TimeManager.WebApp.Controllers
             actividad.FechaRegistro = DateTime.Now;
             actividad.EsActivo = true;
             actividad = ActividadBL.Create(actividad);
+
             if (actividad.Id > 0)
             {
+                ActividadBL.UpdateBoleta(actividad);
                 ModelState.Clear();
                 return RedirectToAction("Create", new { id = actividad.BoletaId });
             }
@@ -66,6 +70,9 @@ namespace TimeManager.WebApp.Controllers
                 );
 
             Actividad model = ActividadBL.GetById(id);
+
+            ViewBag.ListActividades = ActividadBL.GetList(model.BoletaId);
+
             return View(model);
         }
 
@@ -75,7 +82,7 @@ namespace TimeManager.WebApp.Controllers
             bool IsUpdate = ActividadBL.Update(actividad);
             if (IsUpdate)
             {
-                return RedirectToAction("Details", new { id = actividad.Id });
+                return RedirectToAction("Edit", new { id = actividad.Id });
             }
             else
             {

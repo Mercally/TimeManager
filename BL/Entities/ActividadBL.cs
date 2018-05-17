@@ -47,8 +47,10 @@ namespace TimeManager.BL.Entities
             {
                 var Query = ActividadQuerys.GetList(onlyActives);
                 var Result = Commands.ExecuteQuery(Query);
-
-                ListActividad = GetData(Result);
+                if (!Query.HasError)
+                {
+                    ListActividad = GetData(Result);
+                }                
             }
             catch (Exception ex)
             {
@@ -64,8 +66,10 @@ namespace TimeManager.BL.Entities
             {
                 var Query = ActividadQuerys.GetList(boletaId, onlyActives);
                 var Result = Commands.ExecuteQuery(Query);
-
-                ListActividad = GetData(Result);
+                if (!Query.HasError)
+                {
+                    ListActividad = GetData(Result);
+                }
             }
             catch (Exception ex)
             {
@@ -81,8 +85,10 @@ namespace TimeManager.BL.Entities
             {
                 var Query = ActividadQuerys.GetById(id, onlyActives);
                 var Result = Commands.ExecuteQuery(Query);
-
-                Actividad = GetData(Result).First();
+                if (!Query.HasError)
+                {
+                    Actividad = GetData(Result).First();
+                }
             }
             catch (Exception ex)
             {
@@ -96,9 +102,11 @@ namespace TimeManager.BL.Entities
             try
             {
                 var Query = ActividadQuerys.Create(actividad);
-                var Result = Convert.ToInt32(Commands.ExecuteScalar(Query));
-
-                actividad.Id = Result;
+                if (!Query.HasError)
+                {
+                    var Result = Convert.ToInt32(Commands.ExecuteScalar(Query));
+                    actividad.Id = Result;
+                }
             }
             catch (Exception ex)
             {
@@ -128,6 +136,21 @@ namespace TimeManager.BL.Entities
             try
             {
                 var Query = ActividadQuerys.Delete(id, removePhysical);
+                Result = Commands.ExecuteNonQuery(Query);
+            }
+            catch (Exception ex)
+            {
+                ExceptionUtility.LogError(ex);
+            }
+            return Result;
+        }
+
+        public static bool UpdateBoleta(Actividad actividad)
+        {
+            bool Result = false;
+            try
+            {
+                var Query = ActividadQuerys.UpdateBoleta(actividad);
                 Result = Commands.ExecuteNonQuery(Query);
             }
             catch (Exception ex)
